@@ -6,7 +6,7 @@ const fs = require ('fs');
 //used to generate ID's for API 
 const { v4: uuidv4 } = require('uuid');
 
-const notesArray = require("./db/db.json");
+var notesArray = require("./db/db.json");
 
 //  instance of Express
 const app = express();
@@ -66,14 +66,15 @@ app.post("/api/notes", function (req, res) {
 
 app.delete("/api/notes/:id", function (req, res) {
     let id = parseInt(req.params.id);
-    let removeItemArray = notesArray.filter(item => item.id != id);
+    //let removeItemArray = notesArray.filter(item => item.id != id);
+    notesArray = notesArray.filter(item => item.id != id);
+    notesArray.forEach(element => element.id = notesArray.indexOf(element));
 
-    removeItemArray.forEach(element => element.id = removeItemArray.indexOf(element));
-
-    fs.writeFileSync("./db/db.json", JSON.stringify(removeItemArray));
+    fs.writeFileSync("./db/db.json", JSON.stringify(notesArray));
 
     res.json({
         isError: false,
+        id: id,
         message: "Note successfully deleted",
         port: PORT,
         status: 200,
