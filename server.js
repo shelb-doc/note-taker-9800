@@ -1,32 +1,18 @@
 // 1. Require Express
 const express = require("express");
 const path = require("path");
-const fs = require ('fs');
-
-
-const notesArray = require("./db/db.json");
-
-//  instance of Express
+// 2. Create an instance of Express
 const app = express();
-
-//  Set the PORT
+// 3. Set the PORT
 const PORT = process.env.PORT || 8080;
 
 // Add middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 // Use /public as root folder
 app.use(express.static(__dirname + '/public'));
 
-// listens to port
-app.listen(PORT, function () {
-    console.log("App listening on PORT " + PORT);
-});
-
 // VIEW ROUTES
-
-// GET ROUTES
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
 });
@@ -35,6 +21,7 @@ app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
+<<<<<<< HEAD
 app.get("/api/notes", function (req, res) {
     return res.json(JSON.parse(fs.readFileSync("./db/db.json")));
 });
@@ -69,16 +56,11 @@ app.delete("/api/notes/:id", function (req, res) {
 
     fs.writeFileSync("./db/db.json", JSON.stringify(removeItemArray));
 
+=======
+// API ROUTES
+app.get("/api/config", (req, res) => {
+>>>>>>> parent of c18a87f (finished routes)
     res.json({
-        isError: false,
-        message: "Note successfully deleted",
-        port: PORT,
-        status: 200,
-        success: true
+    success: true,
     });
-});
-
-// Redirect to root
-app.get("*", function (req, res) {
-    res.redirect('/');
 });
