@@ -3,8 +3,6 @@ const express = require("express");
 const path = require("path");
 const fs = require ('fs');
 
-//used to generate ID's for API 
-const { v4: uuidv4 } = require('uuid');
 
 const notesArray = require("./db/db.json");
 
@@ -49,7 +47,6 @@ app.post("/api/notes", function (req, res) {
 
     notesArray.push(newNoteRequest);
     newNoteRequest.id = notesArray.indexOf(newNoteRequest);
-    newNoteRequest.id = uuidv4();
     fs.writeFileSync("./db/db.json", JSON.stringify(notesArray));
     
     res.json({
