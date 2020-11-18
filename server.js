@@ -21,7 +21,6 @@ app.get("/notes", function (req, res) {
     res.sendFile(path.join(__dirname, "public/notes.html"));
 });
 
-<<<<<<< HEAD
 app.get("/api/notes", function (req, res) {
     return res.json(JSON.parse(fs.readFileSync("./db/db.json")));
 });
@@ -56,10 +55,6 @@ app.delete("/api/notes/:id", function (req, res) {
 
     fs.writeFileSync("./db/db.json", JSON.stringify(removeItemArray));
 
-=======
-// API ROUTES
-app.get("/api/config", (req, res) => {
->>>>>>> parent of c18a87f (finished routes)
     res.json({
     success: true,
     });
