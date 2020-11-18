@@ -1,4 +1,5 @@
 # 📝🖥️ Note Taker 9800 🖥️📝
+<<<<<<< HEAD
 
 This is an application that can be used to write, save, and delete notes. It uses Express backend and NodeJS
 
@@ -27,3 +28,6 @@ Thank you to my cat Mimikyu for being my Rubber Ducky.
 ## License
 
 Licensed under the [MIT](LICENSE.txt) license.
+=======
+an application that can be used to write, save, and delete notes.
+>>>>>>> parent of 094432f (updated delete api call)
