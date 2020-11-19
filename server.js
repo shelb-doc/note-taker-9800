@@ -1,9 +1,12 @@
 // 1. Require Express
 const express = require("express");
 const path = require("path");
-// 2. Create an instance of Express
+const fs = require ('fs');
+
+// Create an instance of Express
 const app = express();
-// 3. Set the PORT
+
+// Set the PORT
 const PORT = process.env.PORT || 8080;
 
 // Add middleware
@@ -58,4 +61,9 @@ app.delete("/api/notes/:id", function (req, res) {
     res.json({
     success: true,
     });
+});
+
+// Redirect to root if no routes match
+app.get("*", function (req, res) {
+    res.redirect('/');
 });

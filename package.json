@@ -1,5 +1,5 @@
 {
-  "name": "note-taker",
+  "name": "note-taker-9800",
   "version": "1.0.0",
   "description": "an application that can be used to write, save, and delete notes.",
   "main": "server.js",
@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "uuid": "^8.3.1"
+    "nodemon": "^2.0.6"
+
   },
   "repository": {
     "type": "git",
