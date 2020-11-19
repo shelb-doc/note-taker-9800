@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8080;
 // Add middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Use /public as root folder
 app.use(express.static(__dirname + '/public'));
 
@@ -32,10 +33,14 @@ app.get("/api/notes", function (req, res) {
 // POST ROUTES
 
 app.post("/api/notes", function (req, res) {
+    
     let newNoteRequest = req.body;
+    console.log("New request: ", newNoteRequest);
 
     notesArray.push(newNoteRequest);
+    // Set id property of newNoteRequest to its index in notesArray
     newNoteRequest.id = notesArray.indexOf(newNoteRequest);
+
     fs.writeFileSync("./db/db.json", JSON.stringify(notesArray));
     
     res.json({
@@ -59,7 +64,11 @@ app.delete("/api/notes/:id", function (req, res) {
     fs.writeFileSync("./db/db.json", JSON.stringify(removeItemArray));
 
     res.json({
-    success: true,
+        isError: false,
+        message: "Note successfully deleted",
+        port: PORT,
+        status: 200,
+        success: true
     });
 });
 
